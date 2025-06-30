@@ -6,7 +6,7 @@ Traffic congestion is a critical and costly challenge across many African cities
 
 
 ## Next Steps
-### Please add after each title your ideas and/or suggestions
+### Please add after each title your ideas and/or suggestions and DO NOT FORGET TO COMMIT CHANGES (green button top right)
 
 1. Problem dee dive/refine idea
    
