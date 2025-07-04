@@ -1,3 +1,5 @@
+# sending sms alerts
+
 import os
 from twilio.rest import Client
 
