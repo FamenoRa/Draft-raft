@@ -108,12 +108,23 @@ if st.button("Optimize Traffic Lights ⚛️"):
     status = greens.pop('status')
     st.write(f"Status: {status}")
 
+    # Store results for SMS
+    st.session_state.optimization_result = greens
+    st.session_state.optimization_params = {
+        "hour": hour_df['hour'].iloc[0],
+        "vehicles": veh_counts,
+        "prediction": pred
+    }
+
 
     # SMS
     phone=st.text_input("SMS recipient",SMS_DEFAULT)
     if st.button("Send SMS Alert 📱"):
-        msg = f"Green times: " + ", ".join([f"J{j}:{t}s" for j,t in greens.items()])
-        if send_sms(msg,phone): st.success("SMS sent!")
+        if phone:
+            opt = st.session_state.optimization_result
+            params = st.session_state.optimization_params
+            msg = f"Green times: " + ", ".join([f"J{j}:{t}s" for j,t in greens.items()])
+            if send_sms(msg,phone): st.success("SMS sent!")
 
 
 
