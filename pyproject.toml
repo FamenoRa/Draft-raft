@@ -1,0 +1,29 @@
+[project]
+name = "draft-raft"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.poetry]
+name = "draft-raft"
+version = "0.1.0"
+description = ""
+authors = ["baahkusi <nanakbaahkusi@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+streamlit = "^1.46.1"
+scikit-learn = "^1.7.0"
+qiskit-optimization = "^0.6.1"
+qiskit-aer = "^0.17.1"
+qiskit = "1.1.0"
+twilio = "^9.6.4"
+matplotlib = "^3.10.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

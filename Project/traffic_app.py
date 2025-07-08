@@ -115,7 +115,7 @@ if 'optimization_result' in st.session_state:
                     f"Optimal light timing:\n"
                     f"- Main Road: {opt['main_green']}s green\n"
                     f"- Side Road: {opt['side_green']}s green\n"
-                    f"Cycle time: {cycle_time}s")
+                    f"Cycle time: {cycle}s")
             
             try:
                 success = send_sms(message, phone_number)
