@@ -1,4 +1,3 @@
-# loading & cleaning the data
 import os
 import pandas as pd
 
@@ -20,7 +19,11 @@ def load_and_clean(path: str) -> pd.DataFrame:
     return df
 
 def group_by_junction_hour(df: pd.DataFrame):
-    d = df.groupby(['junction_id', 'hour'])['vehicle_count'].sum().reset_index()
+    d = df.groupby(['junction_id', 'hour'])['vehicle_count'].median().reset_index()
+    return d
+
+def group_by_junction(df: pd.DataFrame):
+    d = df.groupby(['junction_id'])['vehicle_count'].median().reindex([1,2,3,4], fill_value=0)
     return d
 
 def get_data():
