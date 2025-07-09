@@ -30,6 +30,7 @@ if __name__ == "__main__":
             # "pred": model.predict([[h,vehicles_count]])[0]
         })
         print(f'done for {h} ...')
+        store_data(results, f'results{h}.csv')
     store_data(results, 'results.csv')
     end_time = time.time()
     print(f"Execution took {end_time - start_time:.2f} seconds.")
