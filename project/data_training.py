@@ -1,4 +1,4 @@
-# for training the congestion model
+# for training the congestion model and prediction
 
 from sklearn.ensemble import RandomForestClassifier
 import pandas as pd
