@@ -1,7 +1,6 @@
-from store import store_data, retrieve_data
+from data_clean import get_data, group_by_junction_hour
+
 
 if __name__ == "__main__":
-    res =  retrieve_data('results.csv')
-    print(res.loc[0,'main_green'])
-
-   
+    df = get_data()
+    d = group_by_junction_hour(df)
