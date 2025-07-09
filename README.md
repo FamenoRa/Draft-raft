@@ -26,7 +26,8 @@ Traffic congestion is a critical and costly challenge across many African cities
       Include the data source as UTD19 (utd19.ethz.ch) in the acknowledgment section of your publication.
 
       These are the datasets titled: manual.pdf, links.csv, detectors_public.csv, utd_19_u.csv
-
    
+## Usage
 
-   
+- install packages with `poetry install`
+- run optimization with `./optimize.sh`
