@@ -98,12 +98,6 @@ if st.button("Optimize Traffic Lights ⚛️"):
         "vehicles": vehicles,
         "prediction": pred
     }
-    print(res)
-    print({
-        "hour": hour,
-        "vehicles": vehicles,
-        "prediction": pred
-    })
 
 if 'optimization_result' in st.session_state:
     st.divider()

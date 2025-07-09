@@ -1,1 +1,1 @@
-poetry run streamlit run project/optimize.py 
+poetry run python project/optimize.py 
