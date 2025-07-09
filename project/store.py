@@ -11,5 +11,4 @@ def retrieve_data(n):
     return pd.read_csv(f'data/{n}')
 
 def retrieve_hour_vehicles(d, h, j):
-    print([h,j])
     return d[(d['hour'] == h) & (d['junction_id'] == j)]
