@@ -1,6 +1,7 @@
-from data_clean import get_data, group_by_junction_hour
+from store import retrieve_data, retrieve_hour_vehicles
 
 
 if __name__ == "__main__":
-    df = get_data()
-    d = group_by_junction_hour(df)
+    res = retrieve_data('results.csv')
+    r = retrieve_hour_vehicles(res, 7, 1)
+    print(r.iloc[0]['main_green'])

@@ -4,7 +4,7 @@ from data_clean import load_and_clean
 from data_training import train_congestion_model
 from QAOA_algo import optimize_light_cycle
 from qiskit_optimization import QuadraticProgram
-from store import retrieve_data
+from store import retrieve_data, retrieve_hour_vehicles
 from sms_alerts import send_sms
 
 # Configuration from environment
@@ -87,21 +87,23 @@ st.pyplot(fig)
 if st.button("Optimize Traffic Lights ⚛️"):
     with st.spinner("Running quantum optimization..."):
         res = retrieve_data('results.csv')
-    print(res.head())
+    r = retrieve_hour_vehicles(res, hour, 1)
+    print(r)
     st.success("Optimization complete!")
-    st.metric("Main road green time", f"{res.loc[0,'main_green']} s")
-    st.metric("Side road green time", f"{res.loc[0,'side_green']} s")
-    status = res.loc[0,'status']
+    st.metric("Main road green time", f"{r.iloc[0]['main_green']} s")
+    st.metric("Side road green time", f"{r.iloc[0]['side_green']} s")
+    status = r.iloc[0]['status']
 
+    
     # Store results for SMS
     st.session_state.optimization_result = {
-        'main_green': res.loc[0,'main_green'],
-        'side_green': res.loc[0,'side_green'],
-        'status': res.loc[0,'status']
+        'main_green': r.iloc[0]['main_green'],
+        'side_green': r.iloc[0]['side_green'],
+        'status': r.iloc[0]['status']
     }
     st.session_state.optimization_params = {
         "hour": hour,
-        "vehicles": vehicles,
+        "vehicles": r.iloc[0]['vehicle_count'],
         "prediction": pred
     }
 
