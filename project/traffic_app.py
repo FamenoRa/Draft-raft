@@ -4,10 +4,11 @@ from data_clean import load_and_clean
 from data_training import train_congestion_model
 from QAOA_algo import optimize_light_cycle
 from qiskit_optimization import QuadraticProgram
+from store import retrieve_data
 from sms_alerts import send_sms
 
 # Configuration from environment
-DATA_PATH = os.getenv('TRAFFIC_DATA_PATH','traffic_datas.csv')
+DATA_PATH = os.getenv('TRAFFIC_DATA_PATH','data/traffic_datas.csv')
 SMS_DEFAULT = os.getenv('SMS_RECIPIENT','+00000000000')
 
 # Cache resources
@@ -85,14 +86,19 @@ st.pyplot(fig)
 # Run quantum optimization
 if st.button("Optimize Traffic Lights ⚛️"):
     with st.spinner("Running quantum optimization..."):
-        res = optimize_light_cycle(vehicles, ratio, cycle)
+        res = retrieve_data('results.csv')
+    print(res.head())
     st.success("Optimization complete!")
-    st.metric("Main road green time", f"{res['main_green']} s")
-    st.metric("Side road green time", f"{res['side_green']} s")
-    status = res['status']
+    st.metric("Main road green time", f"{res.loc[0,'main_green']} s")
+    st.metric("Side road green time", f"{res.loc[0,'side_green']} s")
+    status = res.loc[0,'status']
 
     # Store results for SMS
-    st.session_state.optimization_result = res
+    st.session_state.optimization_result = {
+        'main_green': res.loc[0,'main_green'],
+        'side_green': res.loc[0,'side_green'],
+        'status': res.loc[0,'status']
+    }
     st.session_state.optimization_params = {
         "hour": hour,
         "vehicles": vehicles,

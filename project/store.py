@@ -3,7 +3,7 @@ import pandas as pd
 
 def store_data(d, n):
     df = pd.DataFrame(d)
-    df.to_csv(f'data/{n}')
+    df.to_csv(f'data/{n}', index=False)
 
 
 def retrieve_data(n):

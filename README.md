@@ -31,3 +31,7 @@ Traffic congestion is a critical and costly challenge across many African cities
 
 - install packages with `poetry install`
 - run optimization with `./optimize.sh`
+
+- for streamlit interface first run `cp run.examle.sh run.sh`
+- fill up the environment variables
+- then run `./run.sh`

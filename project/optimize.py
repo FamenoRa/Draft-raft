@@ -21,5 +21,5 @@ if __name__ == "__main__":
     df.to_csv('data/cleaned_data.csv')
     model = get_model(df)
     res = optimize_light_cycle(vehicles, ratio, cycle)
+    print(res)
     store_data([res], 'results.csv')
-    d = retrieve_data('results.csv')
