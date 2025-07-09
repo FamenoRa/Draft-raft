@@ -1,4 +1,4 @@
- # loading & cleaning the data
+# loading & cleaning the data
 import os
 import pandas as pd
 
@@ -15,12 +15,16 @@ def load_and_clean(path: str) -> pd.DataFrame:
     df['vehicle_count'] = df['vehicle_count'].clip(lower=0)
     df = df.drop_duplicates(['junction_id', 'datetime']).set_index('datetime')
 
-    # add hour feature
+    # add hour
     df['hour'] = df.index.hour
     return df
 
 def group_by_junction_hour(df: pd.DataFrame):
     d = df.groupby(['junction_id', 'hour'])['vehicle_count'].median().reset_index()
+    return d
+
+def group_by_junction(df: pd.DataFrame):
+    d = df.groupby(['junction_id'])['vehicle_count'].median().reindex([1,2,3,4], fill_value=0)
     return d
 
 def get_data():

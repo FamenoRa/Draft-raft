@@ -87,8 +87,7 @@ st.pyplot(fig)
 if st.button("Optimize Traffic Lights ⚛️"):
     with st.spinner("Running quantum optimization..."):
         res = retrieve_data('results.csv')
-    r = retrieve_hour_vehicles(res, hour, 1)
-    print(r)
+    r = retrieve_hour_vehicles(res, hour)
     st.success("Optimization complete!")
     st.metric("Main road green time", f"{r.iloc[0]['main_green']} s")
     st.metric("Side road green time", f"{r.iloc[0]['side_green']} s")
@@ -103,7 +102,7 @@ if st.button("Optimize Traffic Lights ⚛️"):
     }
     st.session_state.optimization_params = {
         "hour": hour,
-        "vehicles": r.iloc[0]['vehicle_count'],
+        "vehicles": r.iloc[0]['vehicles_count'],
         "prediction": pred
     }
 
