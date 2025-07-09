@@ -9,7 +9,7 @@ from qiskit_optimization import QuadraticProgram
 from sms_alerts import send_sms
 
 # Configuration from environment
-DATA_PATH = os.getenv('TRAFFIC_DATA_PATH','traffic_datas.csv')
+DATA_PATH = os.getenv('TRAFFIC_DATA_PATH','data/traffic_datas.csv')
 SMS_DEFAULT = os.getenv('SMS_RECIPIENT','+00000000000')
 
 # Cache resources
@@ -99,6 +99,7 @@ st.subheader(f"Predicted congestion: {labels[pred]}")
 # Run quantum optimization
 if st.button("Optimize Traffic Lights ⚛️"):
     with st.spinner("Running quantum optimization..."):
+        print(veh_counts)
         greens = optimize_light_cycle(veh_counts, cycle_time=cycle)
         #res = optimize_light_cycle(vehicles, ratio, cycle)
     st.success("Optimization complete!")

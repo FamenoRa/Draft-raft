@@ -1,0 +1,1 @@
+poetry run python project/optimize.py 

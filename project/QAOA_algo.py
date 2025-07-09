@@ -36,7 +36,7 @@ def optimize_light_cycle(veh_counts: dict, cycle_time: int, min_green: int = 5) 
 
     # Solve with QAOA optimizer
     sampler = Sampler()
-    qaoa = QAOA(sampler=sampler, optimizer=COBYLA(maxiter=50), reps=1)
+    qaoa = QAOA(sampler=sampler, optimizer=COBYLA(maxiter=20), reps=1)
     optimizer = MinimumEigenOptimizer(qaoa)
     result = optimizer.solve(qp)
 

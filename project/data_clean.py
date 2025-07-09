@@ -1,6 +1,8 @@
 # loading & cleaning the data
-
+import os
 import pandas as pd
+
+DATA_PATH = os.getenv('TRAFFIC_DATA_PATH','data/traffic_datas.csv')
 
 def load_and_clean(path: str) -> pd.DataFrame:
     """Load traffic data CSV and clean it."""
@@ -16,3 +18,12 @@ def load_and_clean(path: str) -> pd.DataFrame:
     # add hour
     df['hour'] = df.index.hour
     return df
+
+def group_by_junction_hour(df: pd.DataFrame):
+    d = df.groupby(['junction_id', 'hour'])['vehicle_count'].sum().reset_index()
+    return d
+
+def get_data():
+    dt = load_and_clean(DATA_PATH)
+    dt.to_csv('data/cleaned_data.csv')
+    return dt
