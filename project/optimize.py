@@ -14,7 +14,7 @@ if __name__ == "__main__":
     cycle = 60
     df = get_data()
     d = group_by_junction_hour(df)
-    hours = range(1)
+    hours = range(24)
     # model = get_model(df)
     results = []
     for h in hours:
