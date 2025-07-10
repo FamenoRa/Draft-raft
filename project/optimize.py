@@ -15,13 +15,14 @@ if __name__ == "__main__":
     df = get_data()
     d = group_by_junction_hour(df)
     hours = range(1)
-    model = get_model(df)
+    # model = get_model(df)
     results = []
     for h in hours:
         print(f'optimize for hour {h} ...')
         df_hour = df[df['hour'] == h]
         df_junction = group_by_junction(df_hour)
-        res = optimize_light_cycle(df_junction.to_dict(), cycle)
+        print(df_junction)
+        res = optimize_light_cycle({1: int(df_junction.loc[1]),2: int(df_junction.loc[2]),3: int(df_junction.loc[3])}, cycle)
         results.append({
             "hour": h,
             "vehicles_count": df_junction.to_dict(),

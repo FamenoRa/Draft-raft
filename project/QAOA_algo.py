@@ -18,6 +18,7 @@ def optimize_light_cycle(veh_counts: dict, cycle_time: int, min_green: int = 5) 
     min_green: minimum green time per junction
     Returns dict with green times per junction and status.
     """
+    print(veh_counts)
     # Build cost coefficients inversely proportional to traffic
     costs = {j: 1/(cnt + 1e-6) for j, cnt in veh_counts.items()}
 
